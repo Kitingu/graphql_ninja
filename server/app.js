@@ -13,10 +13,11 @@ const app = express();
  */
 
 app.use('/graphql',graphqlHTTP({
-schema
+schema,
+graphiql:true
 }))
 
 const PORT = 4000;
 app.listen(PORT, () => {
-  console.log("app running on port ${PORT}");
+  console.log(`app running on port ${PORT}`);
 });

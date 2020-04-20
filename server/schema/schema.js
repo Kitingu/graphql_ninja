@@ -36,7 +36,7 @@ const RootQuery = new GraphQLObjectType({
        */
       resolve(parent, args) {
         // code for getting data from db
-        return _find(books, { id: args.id });
+        return _.find(books, { id: args.id });
       },
     },
   },
