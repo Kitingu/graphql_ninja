@@ -10,8 +10,8 @@ const {
 
 // dummy data
 let books = [
-  { name: "the client", genre: "Fantasy", id: "1" },
-  { name: "Unpealing the mask", genre: "Political", id: "2" },
+  { name: "the client", genre: "Fantasy", id: "1", authorId: "1" },
+  { name: "Unpealing the mask", genre: "Political", id: "2", authorId: "2" },
 ];
 let authors = [
   { name: "joseph", age: 23, id: "1" },
@@ -27,6 +27,14 @@ const BookType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     genre: { type: GraphQLString },
+    author: {
+      type: AuthorType,
+      // parent is the book and contains an author id
+      resolve(parent, args) {
+        console.log(parent);
+        return _.find(authors, { id: parent.authorId });
+      },
+    },
   }),
 });
 
