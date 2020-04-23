@@ -55,7 +55,7 @@ const Mutation = new GraphQLObjectType({
       type: AuthorType,
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
-        age: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
       },
       resolve(parent, args) {
         let author = new Author({
@@ -119,7 +119,7 @@ const RootQuery = new GraphQLObjectType({
       },
     },
     authors: {
-      type: new GraphQLList(BookType),
+      type: new GraphQLList(AuthorType),
       resolve(parent, args) {
         return Author.find({});
       },
