@@ -11,15 +11,21 @@ const getBooksQuery = gql`
   }
 `;
 class BookList extends Component {
-   
+  //    graphql has passed in query results as props
+  displayBooks() {
+    let data = this.props.data;
+    if (data.loading) {
+      return <div> Loading Books</div>;
+    } else {
+      return data.books.map(book => {
+        return <li key={book.id}> {book.name}</li>;
+      });
+    }
+  }
   render() {
-
-     console.log(this.props);
     return (
       <div>
-        <ul id="book-list">
-          <li>Book</li>
-        </ul>
+        <ul id="book-list">{this.displayBooks()}</ul>
       </div>
     );
   }
